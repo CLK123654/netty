@@ -1,0 +1,29 @@
+syntax = "proto3";
+option optimize_for = SPEED; //加快解析
+option java_package="com.ls.netty.protobuf";
+option java_outer_classname = "MyInfo";
+
+message MyMessage {
+    enum DataType {
+        StudentType = 0;
+        TeacherType = 1;
+    }
+
+    DataType dataType = 1;
+
+    //表示还存在一下的其中一个类型
+    oneof dataBody {
+        Student stu = 2;
+        Teacher tcer = 3;
+    }
+}
+
+message Student {
+    int32 id = 1;
+    string name = 2;
+}
+
+message Teacher {
+    int32 id = 1;
+    string age = 2;
+}
